@@ -11,9 +11,19 @@ public class Movement : MonoBehaviour {
     private float speed;
     private float walkingSpeed = 4.317f;
 
+    private float fallSpeed = -78.4f;
+    private float jumpHeight = 1.2522f;
+
+    [SerializeField] private bool isGrounded;
+    private LayerMask groundMask;
+
+    private Vector3 velocity;
+
     private void Awake() {        
         camera = GetComponentInChildren<Camera>();
         rigidbody = GetComponent<Rigidbody>();
+
+        groundMask = LayerMask.GetMask("Ground");
     }
 
     private void Start() {
@@ -25,6 +35,8 @@ public class Movement : MonoBehaviour {
         CameraUpdate();
 
         MovementUpdate();
+        FallUpdate();
+        JumpUpdate();
     }
 
     private void CameraUpdate() {
@@ -55,9 +67,39 @@ public class Movement : MonoBehaviour {
         //rigidbody.AddForce(moveDirection * speed);
     }
 
-    private void JumpUpdate() {
-        if(Input.GetButton("Jump")) {
-            
+    private void FallUpdate() {
+        velocity.y += fallSpeed * Time.deltaTime;
+        rigidbody.velocity = new Vector3(rigidbody.velocity.x, velocity.y, rigidbody.velocity.z);
+
+        //isGrounded = Physics.CheckSphere(transform.position, 0.4f, groundMask);
+        isGrounded = Physics.CheckBox(transform.position, new Vector3(0.29f, 0.01f, 0.29f), transform.rotation, groundMask);
+
+        if(isGrounded && rigidbody.velocity.y < 0) {
+            velocity.y = 0;
         }
     }
+
+    private void JumpUpdate() {
+        if(isGrounded && Input.GetButton("Jump")) {
+            isGrounded = false;
+
+            velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * fallSpeed);            
+        }
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        //Gizmos.DrawWireSphere(transform.position + Vector3.zero, 0.4f);
+        Gizmos.DrawWireCube(transform.position, new Vector3(0.29f, 0.01f, 0.29f) * 2);
+    }
+
+    /*
+    private void OnCollisionEnter(Collision other) {
+        isGrounded = true;
+    }
+
+    private void OnCollisionExit(Collision other) {
+        isGrounded = false;
+    }
+    */
 }

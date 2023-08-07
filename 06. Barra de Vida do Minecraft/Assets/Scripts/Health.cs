@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
     [SerializeField] private int max;
-    [SerializeField] private float current;
+    [SerializeField] private int current;
 
     // Lista de GameObjects com as sprites de coração
     [SerializeField] private GameObject bar;

@@ -6,7 +6,7 @@ using TMPro;
 
 public class Health : MonoBehaviour {
     [SerializeField] private int max;
-    [SerializeField] private float current;
+    [SerializeField] private int current;
 
     [SerializeField] private Image bar;
     [SerializeField] private Image bar2;
@@ -101,8 +101,8 @@ public class Health : MonoBehaviour {
     }
 
     private void UpadteBar() {
-        bar.fillAmount = current / max;
-        bar2.fillAmount = current / max;
+        bar.fillAmount = (float)current / max;
+        bar2.fillAmount = (float)current / max;
     }
 
     public void Add() {

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Hunger : MonoBehaviour {
     [SerializeField] private int max;
-    [SerializeField] private float current;
+    [SerializeField] private int current;
 
     // Lista de GameObjects com as sprites de pernil
     [SerializeField] private GameObject bar;
