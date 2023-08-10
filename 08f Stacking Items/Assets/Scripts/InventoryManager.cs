@@ -9,6 +9,8 @@ public class InventoryManager : MonoBehaviour {
 
     [SerializeField] private GameObject itemPrefab;
 
+    private int maxStack = 10;
+
     private void Awake() {
         slots.AddRange(toolbar.GetComponentsInChildren<Slot>());
         slots.AddRange(invetory.GetComponentsInChildren<Slot>());
@@ -18,8 +20,15 @@ public class InventoryManager : MonoBehaviour {
         foreach(Slot slot in slots) {
             Item item = slot.GetComponentInChildren<Item>();
 
-            if(!item) {
+            if(item && item.enumItems == itemID && item.stack < maxStack) {
+                item.stack++;
+                item.RefreshCount();
+
+                return true;
+            }
+            else if(!item) {
                 SpawnNewItem(itemID, slot);
+
                 return true;
             }
         }

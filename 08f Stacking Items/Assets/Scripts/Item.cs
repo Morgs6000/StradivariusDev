@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,12 +15,35 @@ public class Item : MonoBehaviour, IPointerDownHandler {
 
     private ItemsManager itemsManager;
 
+    public int stack = 1;
+    private TextMeshProUGUI textMeshPro;
+
+    public EnumItems enumItems;
+
     private void Awake() {
         rawImage = GetComponent<RawImage>();
 
         //drag = GameObject.Find("Drag");
         drag = FindObjectOfType<Drag>();
         itemsManager = FindObjectOfType<ItemsManager>();
+
+        textMeshPro = GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    public void InitialiseItem(EnumItems itemID) {
+        rawImage.texture = itemsManager.itemsAtlas;
+        rawImage.uvRect = itemsManager.uv(itemsManager.GetUV(itemID));
+
+        RefreshCount();
+
+        enumItems = itemID;
+    }
+
+    public void RefreshCount() {
+        textMeshPro.text = stack.ToString();
+
+        bool textActive = stack > 1;
+        textMeshPro.gameObject.SetActive(textActive);
     }
 
     public void OnPointerDown(PointerEventData eventData) {
@@ -61,10 +85,5 @@ public class Item : MonoBehaviour, IPointerDownHandler {
         transform.SetParent(parrentAfterDrag);
 
         rawImage.raycastTarget = true;
-    }
-
-    public void InitialiseItem(EnumItems itemID) {
-        rawImage.texture = itemsManager.itemsAtlas;
-        rawImage.uvRect = itemsManager.uv(itemsManager.GetUV(itemID));
     }
 }
