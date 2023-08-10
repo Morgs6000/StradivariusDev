@@ -1,56 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Item : MonoBehaviour, IPointerDownHandler {
-    private Image image;
-
     public Transform parrentAfterDrag;
 
-    //private GameObject drag;
+    public Image image;
+
+    //[SerializeField] private GameObject drag;
     private Drag drag;
+
+    /*[SerializeField] */private ScriptableItem scriptableItem;
 
     private void Awake() {
         image = GetComponent<Image>();
 
-        //onDrag = GameObject.Find("Drag");
+        //drag = GameObject.Find("Drag");
         drag = FindObjectOfType<Drag>();
     }
+
+    /*
+    private void Start() {
+        InitialiseItem(scriptableItem);
+    }
+    */
 
     public void OnPointerDown(PointerEventData eventData) {
         if(drag.transform.childCount == 0) {
             OnBeginDragging();
-        }
-        else {            
+        }      
+        else {
             OnBeginDragging();
-            
+
             Item item = drag.GetComponentInChildren<Item>();
             item.parrentAfterDrag = parrentAfterDrag;
 
             item.OnEndDragging();
-        }
+        }  
     }
-
+    
     public void OnBeginDragging() {
-        // Salva o Slot atual
+        //Debug.Log("Comece a arrastar");
+
+        // Salva o slot atual
         parrentAfterDrag = transform.parent;
 
-        // Transforma o Item em um objeto filho do GameObject "Drag"
+        // Jogar o item para o final da Hierarquia do Canvas
         transform.SetParent(drag.transform);
 
         image.raycastTarget = false;
     }
 
     public void OnDragging() {
+        //Debug.Log("Arrastando");
+
         transform.position = Input.mousePosition;
     }
 
-    public void OnEndDragging() {        
-        // Retornar o Item para o ultimo Slot salvo
+    public void OnEndDragging() {
+        //Debug.Log("Fim de arratar");
+
+        // Retonar o item para o ultimo slot salvo
         transform.SetParent(parrentAfterDrag);
 
         image.raycastTarget = true;
+    }
+
+    public void InitialiseItem(ScriptableItem newItem) {
+        scriptableItem = newItem;
+        image.sprite = newItem.sprite;
     }
 }

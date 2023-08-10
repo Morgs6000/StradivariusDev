@@ -4,21 +4,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Slot : MonoBehaviour, IPointerDownHandler {
-    //private GameObject drag;
     private Drag drag;
 
     private void Awake() {
-        //onDrag = GameObject.Find("Drag");
         drag = FindObjectOfType<Drag>();
     }
 
     public void OnPointerDown(PointerEventData eventData) {
-        if(drag.transform.childCount == 1) {
-            OnDropping();
-        }
+        OnDropping();
     }
 
-    private void OnDropping() {
+    public void OnDropping() {
         if(transform.childCount == 0) {
             Item item = drag.GetComponentInChildren<Item>();
             item.parrentAfterDrag = transform;
