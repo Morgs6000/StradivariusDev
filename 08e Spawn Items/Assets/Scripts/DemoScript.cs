@@ -8,8 +8,6 @@ public class DemoScript : MonoBehaviour {
     [SerializeField] private GameObject container;
     [SerializeField] private GameObject itemPrefab;
 
-    [SerializeField] private EnumItems enumItems;
-
     private void Start() {
         AddItem();
     }
@@ -27,6 +25,7 @@ public class DemoScript : MonoBehaviour {
 
     private void AddItem() {
         foreach(EnumItems itemID in System.Enum.GetValues(typeof(EnumItems))) {
+        //for(int i = 0; i < itemsToPickup.Length; i++) {
             SpawnNewItem(itemID);
         }
     }

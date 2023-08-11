@@ -7,16 +7,19 @@ using UnityEngine.UI;
 public class ItemNEI : MonoBehaviour, IPointerDownHandler {
     private DemoScript demoScript;
 
+    //private Image image;
     private RawImage rawImage;
 
     private ItemsManager itemsManager;
 
-    private EnumItems enumItems;
+    [SerializeField] private EnumItems enumItems;
 
     private void Awake() {
         demoScript = FindObjectOfType<DemoScript>();
 
+        //image = GetComponent<Image>();
         rawImage = GetComponent<RawImage>();
+
         itemsManager = FindObjectOfType<ItemsManager>();
     }
     
@@ -25,6 +28,8 @@ public class ItemNEI : MonoBehaviour, IPointerDownHandler {
     }
 
     public void InitialiseItem(EnumItems itemID) {
+        //image.sprite = itemScript.sprite;
+
         rawImage.texture = itemsManager.itemsAtlas;
         rawImage.uvRect = itemsManager.uv(itemsManager.GetUV(itemID));
 

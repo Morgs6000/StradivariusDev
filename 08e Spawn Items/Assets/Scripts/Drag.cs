@@ -31,6 +31,7 @@ public class Drag : MonoBehaviour {
 
                             if(!item2) {
                                 item.transform.SetParent(slot.transform);
+                                //item.image.raycastTarget = true;
                                 item.rawImage.raycastTarget = true;
 
                                 return;
