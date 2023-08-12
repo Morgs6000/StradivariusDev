@@ -4357,7 +4357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current: 0
   textMeshPro: {fileID: 81094723}
-  icon: {fileID: 566924093}
+  image: {fileID: 566924093}
   sprites:
   - {fileID: 552591699, guid: 98d6b7d40f6271748be9ed56ace8fb22, type: 3}
   - {fileID: 454601125, guid: 98d6b7d40f6271748be9ed56ace8fb22, type: 3}

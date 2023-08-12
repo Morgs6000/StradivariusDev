@@ -8,7 +8,9 @@ public class Cash : MonoBehaviour {
     [SerializeField] private int current;
 
     [SerializeField] private TextMeshProUGUI textMeshPro;
-    [SerializeField] private Image icon;
+    //[SerializeField] private GameObject icon;
+    [SerializeField] private Image image;
+    //[SerializeField] private Color color = Color.white;
     [SerializeField] private Sprite[] sprites;
 
     private static int mil = 100 * 10;
@@ -18,6 +20,10 @@ public class Cash : MonoBehaviour {
     private static int dezMilhão = milhão * 10;
     private static int cemMilhão = dezMilhão * 10;
     private static int bilhão = cemMilhão * 10;
+
+    private void Awake() {
+        //image = icon.GetComponentInChildren<Image>();
+    }
 
     private void Start() {
         
@@ -29,61 +35,80 @@ public class Cash : MonoBehaviour {
     }
 
     private void UpdateText() {
-        if(current == 0) {
-            textMeshPro.text = null;
-        }
-        if(current >= 1) {
-            textMeshPro.text = current.ToString();
-            textMeshPro.color = Color.yellow;
-        }
-        if(current >= mil) {
-            textMeshPro.text = (current / mil).ToString() + " K";
-            textMeshPro.color = Color.white;
-        }
-        if(current >= milhão) {
-            textMeshPro.text = (current / milhão).ToString() + " M";
-            textMeshPro.color = Color.green;
-        }
-        if(current >= bilhão) {
-            textMeshPro.text = (current / bilhão).ToString() + " B";
-            textMeshPro.color = Color.cyan;
-        }
+        bool textActive = current > 0;
+        textMeshPro.gameObject.SetActive(textActive);
+
+        //if(current == 0) {
+            //textMeshPro.gameObject.SetActive(false);
+        //}
+        //else {
+            //textMeshPro.gameObject.SetActive(true);
+            
+            if(current >= 1) {
+                textMeshPro.text = current.ToString();
+                textMeshPro.color = Color.yellow;
+            }
+            if(current >= mil) {
+                textMeshPro.text = (current / mil).ToString() + " K";
+                textMeshPro.color = Color.white;
+            }
+            if(current >= milhão) {
+                textMeshPro.text = (current / milhão).ToString() + " M";
+                textMeshPro.color = Color.green;
+            }
+            if(current >= bilhão) {
+                textMeshPro.text = (current / bilhão).ToString() + " B";
+                textMeshPro.color = Color.cyan;
+            }
+        //}        
     }
 
     private void UpdateSprite() {
-        if(current >= 0) {
-            icon.sprite = sprites[0];
-        }
-        if(current >= 1) {
-            icon.sprite = sprites[1];
-        }
-        if(current >= 2) {
-            icon.sprite = sprites[2];
-        }
-        if(current >= 3) {
-            icon.sprite = sprites[3];
-        }
-        if(current >= 4) {
-            icon.sprite = sprites[4];
-        }
-        if(current >= 5) {
-            icon.sprite = sprites[5];
-        }
-        if(current >= 25) {
-            icon.sprite = sprites[6];
-        }
-        if(current >= 100) {
-            icon.sprite = sprites[7];
-        }
-        if(current >= 250) {
-            icon.sprite = sprites[8];
-        }
-        if(current >= mil) {
-            icon.sprite = sprites[9];
-        }
-        if(current >= dezMil) {
-            icon.sprite = sprites[10];
-        }
+        //icon.color = color;
+
+        bool iconActive = current > 0;
+        image.gameObject.SetActive(iconActive);
+        
+        //if(current == 0) {
+            //image.sprite = null;
+            //color.a = 0.0f;
+            //image.gameObject.SetActive(false);
+        //}
+        //else {
+            //color.a = 1.0f;
+            //textMeshPro.gameObject.SetActive(true);
+
+            if(current == 1) {
+                image.sprite = sprites[1];
+            }
+            if(current == 2) {
+                image.sprite = sprites[2];
+            }
+            if(current == 3) {
+                image.sprite = sprites[3];
+            }
+            if(current == 4) {
+                image.sprite = sprites[4];
+            }
+            if(current >= 5) {
+                image.sprite = sprites[5];
+            }
+            if(current >= 25) {
+                image.sprite = sprites[6];
+            }
+            if(current >= 100) {
+                image.sprite = sprites[7];
+            }
+            if(current >= 250) {
+                image.sprite = sprites[8];
+            }
+            if(current >= mil) {
+                image.sprite = sprites[9];
+            }
+            if(current >= dezMil) {
+                image.sprite = sprites[10];
+            }
+        //}
     }
 
     public void Add(int value) {
