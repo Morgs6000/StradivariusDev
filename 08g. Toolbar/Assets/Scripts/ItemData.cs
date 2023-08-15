@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemData {
     public string textualID;
+    public string itemName;
     public Texture itemTexture;
     public Vector2 itemUV;
 
@@ -29,14 +30,16 @@ public class ItemData {
         return new Rect(x, y, w, h);
     }
 
-    public ItemData(string id, Texture texture, Vector2 uv) {
+    public ItemData(string id, string name, Texture texture, Vector2 uv) {
         textualID = id;
+        itemName = name;
         itemTexture = texture;
         itemUV = uv;
     }
 
-    public ItemData(string id, Texture texture, Vector2 uv, int stack) {
+    public ItemData(string id, string name, Texture texture, Vector2 uv, int stack) {
         textualID = id;
+        itemName = name;
         itemTexture = texture;
         itemUV = uv;
         maxStack = stack;

@@ -14,6 +14,7 @@ public class Item : MonoBehaviour, IPointerDownHandler {
 
     public int itemID;
     public string textualID;
+    public string itemName;
 
     public int stack = 1;
     private TextMeshProUGUI textMeshPro;
@@ -126,6 +127,7 @@ public class Item : MonoBehaviour, IPointerDownHandler {
 
         itemID = id;
         textualID = itemData.textualID;
+        itemName = itemData.itemName;
         RefreshCount();
     }
 

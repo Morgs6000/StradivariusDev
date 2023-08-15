@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DemoScript : MonoBehaviour {
@@ -7,6 +8,9 @@ public class DemoScript : MonoBehaviour {
 
     [SerializeField] private GameObject itemPrefab;
     [SerializeField] private GameObject container;
+
+    [SerializeField] private TextMeshProUGUI textMeshPro;
+    [SerializeField] private Animator animator;
 
     private void Awake() {
         inventoryManager = FindObjectOfType<InventoryManager>();
@@ -20,11 +24,33 @@ public class DemoScript : MonoBehaviour {
         bool result = inventoryManager.AddItem(ItemManager.items[id], id, stack);
 
         if(result) {
-            Debug.Log("Dado " + stack + " " +  textualID + " para o jogador");
+            Debug.Log("Dado " + stack + " " +  ItemManager.items[id].itemName + " para o jogador");
         }
         else {
-            Debug.Log("Inventario Cheio");
+            //Debug.Log("Inventario Cheio");
+            //animator.SetTrigger("reset");
+
+            WarningMensage();
         }
+    }
+
+    private void WarningMensage() {
+        //foreach(Slot slot in inventoryManager.slots) {
+            //Item item = slot.GetComponentInChildren<Item>();
+
+            //if(item) {
+                textMeshPro.text = "Inventario Cheio";
+                //textMeshPro.gameObject.SetActive(true);
+
+                ColorUtility.TryParseHtmlString("#FC5454", out Color color);
+                textMeshPro.color = color;
+                
+                animator.SetTrigger("fadout");
+            //}
+            //else {                
+                //textMeshPro.gameObject.SetActive(false);
+            //}
+        //}
     }
 
     private void AddItem() {
