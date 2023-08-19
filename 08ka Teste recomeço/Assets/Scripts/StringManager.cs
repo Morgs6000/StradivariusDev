@@ -15,21 +15,30 @@ public class StringManager : MonoBehaviour {
 
     //*
     private void Awake(){
+        Instance = this;
+
+        LoadLanguage("pt_BR");
+
+        /*
         if(Instance == null) {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            LoadLanguage("pt_BR");
         }
         else{
             Destroy(gameObject);
         }
+        */
     }
     //*/
 
-    private void Start() {
-        LoadLanguage("pt_BR");
+    //private void Awake() {
+        //LoadLanguage("pt_BR");
         //LoadLanguage("en_US");
-        Debug.Log(GetString("item.iron_shovel.name"));
-    }
+        //Debug.Log(GetString("item.iron_shovel.name"));
+        //Debug.Log(GetString(Item.dictionaryTextualID["iron_shovel"].getItemName()));
+    //}
 
     public void LoadLanguage(string language){
         string path = "Lang/" + language;

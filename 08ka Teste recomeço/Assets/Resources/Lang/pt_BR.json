@@ -1,6 +1,11 @@
 {
     "strings" : [
         "item.iron_shovel.name=Pá de Ferro",
-        "item.iron_pickaxe.name=Picareta de Ferro"
+        "item.iron_pickaxe.name=Picareta de Ferro",
+        "item.iron_axe.name=Machado de Ferro",
+        "item.flint_and_steel.name=Pederneira",
+        "item.apple.name=Maçã",
+        "item.bow.name=Arco",
+        "item.arrow.name=Flecha"
     ]
 }
