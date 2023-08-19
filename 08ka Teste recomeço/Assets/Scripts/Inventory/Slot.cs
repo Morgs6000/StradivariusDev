@@ -12,6 +12,9 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
     private Image image;
     //private bool onEnter;
 
+    [SerializeField] private EnumSlotTag enumSlotTag = EnumSlotTag.NONE;
+    [SerializeField] private int armorType;
+
     private void Awake() {
         //drag = FindObjectOfType<Drag>();
         itemPrefab = Resources.Load<GameObject>("Prefabs/ItemRenderer");
@@ -19,7 +22,20 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
         image = GetComponent<Image>();
     }
 
+    private ItemRenderer getItem() {
+        return Drag.Instance.GetComponentInChildren<ItemRenderer>();
+    }
+
+    public EnumSlotTag getEnumSlotTag() {
+        return this.enumSlotTag;
+    }
+
     public void OnPointerDown(PointerEventData eventData) {
+        //*
+        if(enumSlotTag != EnumSlotTag.NONE && Item.dictionaryTextualID[getItem().getTextualID()].getEnumSlotTag(armorType) != enumSlotTag) {
+            return;
+        }
+        //*/
         if(Drag.Instance.transform.childCount == 1) {
             DropFullStack();
             DropOneStack();
@@ -28,10 +44,10 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
 
     private void OnDropping() {
         if(transform.childCount == 0) {
-            ItemRenderer itemOnDrag = Drag.Instance.GetComponentInChildren<ItemRenderer>();
-            itemOnDrag.setParrentAfterDrag(transform);
+            //ItemRenderer itemOnDrag = Drag.Instance.GetComponentInChildren<ItemRenderer>();
+            getItem().setParrentAfterDrag(transform);
 
-            itemOnDrag.OnEndDragging();
+            getItem().OnEndDragging();
         }
     }
 
@@ -42,24 +58,24 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
     }
 
     private void DropOneStack() {
-        ItemRenderer itemOnDrag = Drag.Instance.GetComponentInChildren<ItemRenderer>();
+        //ItemRenderer itemOnDrag = Drag.Instance.GetComponentInChildren<ItemRenderer>();
 
         if(Input.GetMouseButtonDown(1)) {
-            if(itemOnDrag.getCurrentStackSize() <= 1) {
+            if(getItem().getCurrentStackSize() <= 1) {
                 OnDropping();
             }
             else {
                 GameObject newItem = Instantiate(itemPrefab, transform);
 
                 ItemRenderer itemInSlot = newItem.GetComponent<ItemRenderer>();
-                itemInSlot.InitialiseItem(Item.dictionaryTextualID[itemOnDrag.getTextualID()]);
+                itemInSlot.InitialiseItem(Item.dictionaryTextualID[getItem().getTextualID()]);
 
-                string name = itemOnDrag.getItemName();
+                string name = getItem().getItemName();
                 newItem.name = StringManager.Instance.GetString(name);
 
-                int result = itemOnDrag.getCurrentStackSize() - 1;
-                itemOnDrag.setCurretnStackSize(result);
-                itemOnDrag.RefreshStack();
+                int result = getItem().getCurrentStackSize() - 1;
+                getItem().setCurretnStackSize(result);
+                getItem().RefreshStack();
 
                 itemInSlot.setCurretnStackSize(1);
                 //itemInSlot.RefreshStack();
@@ -82,4 +98,12 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
         image.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         //onEnter = false;
     }
+}
+
+public enum EnumSlotTag {
+    NONE,
+    HELMET,
+    CHESTPLATE,
+    LEGGINGS,
+    BOOTS
 }

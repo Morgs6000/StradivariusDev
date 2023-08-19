@@ -51,9 +51,20 @@ public class DemoScript : MonoBehaviour {
     }
 
     private void AddItem() {
+        //*
         foreach(Item item in Item.itemsList) {
-            SpawnNewItem(Item.dictionaryTextualID[item.getTextualID()]);
+            //if(item != null) {
+                SpawnNewItem(Item.dictionaryTextualID[item.getTextualID()]);
+            //}
         }
+        //*/
+        /*
+        for(int i = 0; i < Item.itemsList.Length; i++) {
+            if(Item.itemsList[i] != null) {
+                SpawnNewItem(Item.itemsList[i]);
+            }
+        }
+        //*/
     }
 
     private void SpawnNewItem(Item item) {

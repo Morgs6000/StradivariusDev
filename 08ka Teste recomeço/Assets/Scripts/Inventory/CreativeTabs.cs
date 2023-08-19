@@ -2,40 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreativeTabs {
-    public static Dictionary<string, CreativeTabs> dictionaryTabLabel = new Dictionary<string, CreativeTabs>();
-    
-    public static CreativeTabs[] creativeTabArray = {
-        new CreativeTabs("buildingBlocks"),
-        new CreativeTabs("decorations"),
-        new CreativeTabs("redstone"),
-        new CreativeTabs("transportation"),
-        new CreativeTabs("misc"),
-        new CreativeTabs("search").setBackgroundImageName("search"),
-        new CreativeTabs("food"),
-        new CreativeTabs("tools"),
-        new CreativeTabs("combat"),
-        new CreativeTabs("brewing"),
-        new CreativeTabs("materials"),
-        new CreativeTabs("inventory").setBackgroundImageName("survival_inv")
-    };
+public class CreativeTabs {    
+    //public static CreativeTabs[] CREATIVE_TAB_ARRAY = new CreativeTabs[12];
+    public static CreativeTabs BUILDING_BLOCKS = new CreativeTabs("buildingBlocks");
+    public static CreativeTabs DECORATIONS = new CreativeTabs("decorations");
+    public static CreativeTabs REDSTONE = new CreativeTabs("redstone");
+    public static CreativeTabs TRANSPORTATION = new CreativeTabs("transportation");
+    public static CreativeTabs MISC = new CreativeTabs("misc");
+    public static CreativeTabs SEARCH = new CreativeTabs("search").setBackgroundImageName("search");
+    public static CreativeTabs FOOD = new CreativeTabs("food");
+    public static CreativeTabs TOOLS = new CreativeTabs("tools");
+    public static CreativeTabs COMBAT = new CreativeTabs("combat");
+    public static CreativeTabs BREWING = new CreativeTabs("brewing");
+    public static CreativeTabs MATERIALS = new CreativeTabs("materials");
+    public static CreativeTabs INVENTORY = new CreativeTabs("inventory").setBackgroundImageName("survival_inv");
 
     private string tabLabel;
 
     // Textura a ser usada.
     private string backgroundImageName = "list_items";
 
-    public CreativeTabs(string label) {
-        dictionaryTabLabel.Add(label, this);
-        
+    public CreativeTabs(string label) {        
         this.tabLabel = label;
     }
-
-    /*
-    public string getTabLabel() {
-        return this.tabLabel;
-    }
-    */
 
     public string getBackgroundImageName() {
         return this.backgroundImageName;

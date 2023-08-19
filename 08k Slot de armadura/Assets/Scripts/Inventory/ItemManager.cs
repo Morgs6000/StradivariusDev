@@ -38,5 +38,9 @@ public class ItemManager : MonoBehaviour {
         items.Add(new ItemData("iron_chestplate").setIcon(itemAltas, 2, 1).setItemName("Peitoral de Ferro").setEnumSlotTag(EnumSlotTag.CHESTPLATE).setMaxDurability(10));
         items.Add(new ItemData("iron_leggings").setIcon(itemAltas, 2, 2).setItemName("Calças de Ferro").setEnumSlotTag(EnumSlotTag.LEGGINGS).setMaxDurability(10));
         items.Add(new ItemData("iron_boots").setIcon(itemAltas, 2, 3).setItemName("Botas de Ferro").setEnumSlotTag(EnumSlotTag.BOOTS).setMaxDurability(10));
+        items.Add(new ItemData("diamond_helmet").setIcon(itemAltas, 3, 0).setItemName("Elmo de Diamante").setEnumSlotTag(EnumSlotTag.HELMET).setMaxDurability(10));
+        items.Add(new ItemData("diamond_chestplate").setIcon(itemAltas, 3, 1).setItemName("Peitoral de Diamante").setEnumSlotTag(EnumSlotTag.CHESTPLATE).setMaxDurability(10));
+        items.Add(new ItemData("diamond_leggings").setIcon(itemAltas, 3, 2).setItemName("Calças de Diamante").setEnumSlotTag(EnumSlotTag.LEGGINGS).setMaxDurability(10));
+        items.Add(new ItemData("diamond_boots").setIcon(itemAltas, 3, 3).setItemName("Botas de Diamante").setEnumSlotTag(EnumSlotTag.BOOTS).setMaxDurability(10));
     }
 }

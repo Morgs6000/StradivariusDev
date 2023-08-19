@@ -183,8 +183,15 @@ public class ItemRenderer : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
             DragHalfStack();
         }
         else {
+            Slot slot = GetComponentInParent<Slot>();
+
             ItemRenderer itemOnDrag = Drag.Instance.transform.GetComponentInChildren<ItemRenderer>();
 
+            if(Item.dictionaryTextualID[itemOnDrag.getTextualID()].getEnumSlotTag() == EnumSlotTag.NONE) {
+                if(slot.getEnumSlotTag() != EnumSlotTag.NONE) {
+                    return;
+                }
+            }
             if(textualID != itemOnDrag.getTextualID()) {
                 ExchangeStack();
             }
@@ -331,6 +338,8 @@ public class ItemRenderer : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         else {
             content = null;
         }
+
+        //string id = "stradivarius_industries:" + textualID;
 
         Tooltip.Instance.Show(itemName, content, textualID);
     }

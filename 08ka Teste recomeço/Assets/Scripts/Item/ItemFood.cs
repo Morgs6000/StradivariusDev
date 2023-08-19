@@ -21,7 +21,7 @@ public class ItemFood : Item {
 
         this.isWolfsFavoriteMeat = isWolfsFavoriteMeat;
 
-        this.setCreativeTab("food");
+        this.setCreativeTab(CreativeTabs.FOOD);
     }
 
     public override EnumAction getItemUseAction() {

@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ToolMaterial {
-    public static Dictionary<string, ToolMaterial> dictionaryToolMaterial = new Dictionary<string, ToolMaterial>();
-
-    public static ToolMaterial[] toolMaterials = {
-        new ToolMaterial("wood", 0, 59, 2.0f, 0, 15),
-        new ToolMaterial("stone", 1, 131, 4.0f, 1, 5),
-        new ToolMaterial("iron", 2, 250, 6.0f, 2, 14),
-        new ToolMaterial("emerald", 3, 1561, 8.0f, 3, 10),
-        new ToolMaterial("gold", 0, 32, 12.0f, 0, 22)
-    };
+    public static ToolMaterial WOOD = new ToolMaterial(0, 59, 2.0f, 0, 15);
+    public static ToolMaterial STONE = new ToolMaterial(1, 131, 4.0f, 1, 5);
+    public static ToolMaterial IRON = new ToolMaterial(2, 250, 6.0f, 2, 14);
+    public static ToolMaterial EMERALD = new ToolMaterial(3, 1561, 8.0f, 3, 10);
+    public static ToolMaterial GOLD = new ToolMaterial(0, 32, 12.0f, 0, 22);
 
     // O nível de material que esta ferramenta pode colher (3 = DIAMANTE, 2 = FERRO, 1 = PEDRA, 0 = FERRO/OURO)
     private int harvestLevel;
@@ -28,8 +24,7 @@ public class ToolMaterial {
     // Define o fator de encantamento natural do material.
     private int enchantability;
 
-    public ToolMaterial(string material, int harvestLevel, int maxUses, float efficiencyOnProperMaterial, int damageVsEntity, int enchantability) {
-        dictionaryToolMaterial.Add(material, this);
+    private ToolMaterial(int harvestLevel, int maxUses, float efficiencyOnProperMaterial, int damageVsEntity, int enchantability) {
 
         this.harvestLevel = harvestLevel;
         this.maxUses = maxUses;

@@ -93,44 +93,59 @@ public class Item : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
         }      
         else {
             Item item = drag.GetComponentInChildren<Item>();
+            Slot slot = GetComponentInParent<Slot>();
             
-            if(enumSlotTag != EnumSlotTag.NONE && item.enumSlotTag != enumSlotTag) {
-                return;
-            }
-            if(textualID != item.textualID) {
-                OnBeginDragging();
+            //if(enumSlotTag == EnumSlotTag.NONE) {
+                if(slot.enumSlotTag == EnumSlotTag.NONE) {
+                    if(textualID != item.textualID) {
+                        OnBeginDragging();
 
-                item.parrentAfterDrag = parrentAfterDrag;
-                item.OnEndDragging();
-            }
-            else {
-                int spaceAvailable = ItemManager.items[itemID].maxStack - stack;
-
-                if(spaceAvailable > 0) {
-                    if(Input.GetMouseButtonDown(0)) {
-                        if(item.stack <= spaceAvailable) {
-                            stack += item.stack;
-                            RefreshCount();
-
-                            item.stack = 0;
-                        }
-                        else {
-                            stack += spaceAvailable;
-                            RefreshCount();
-
-                            item.stack -= spaceAvailable;
-                            item.RefreshCount();
-                        }
+                        item.parrentAfterDrag = parrentAfterDrag;
+                        item.OnEndDragging();
                     }
-                    if(Input.GetMouseButtonDown(1)) {
-                        stack++;
-                        RefreshCount();
+                    else {
+                        int spaceAvailable = ItemManager.items[itemID].maxStack - stack;
 
-                        item.stack--;
-                        item.RefreshCount();
+                        if(spaceAvailable > 0) {
+                            if(Input.GetMouseButtonDown(0)) {
+                                if(item.stack <= spaceAvailable) {
+                                    stack += item.stack;
+                                    RefreshCount();
+
+                                    item.stack = 0;
+                                }
+                                else {
+                                    stack += spaceAvailable;
+                                    RefreshCount();
+
+                                    item.stack -= spaceAvailable;
+                                    item.RefreshCount();
+                                }
+                            }
+                            if(Input.GetMouseButtonDown(1)) {
+                                stack++;
+                                RefreshCount();
+
+                                item.stack--;
+                                item.RefreshCount();
+                            }
+                        }
+                    } 
+                }
+                //*
+                if(item.enumSlotTag == enumSlotTag) {
+                    if(textualID != item.textualID) {
+                        OnBeginDragging();
+
+                        item.parrentAfterDrag = parrentAfterDrag;
+                        item.OnEndDragging();
                     }
                 }
-            }            
+                //*/
+                else {
+                    return;
+                }
+            //}           
         }  
     }
 

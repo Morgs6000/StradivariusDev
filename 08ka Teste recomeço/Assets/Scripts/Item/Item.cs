@@ -5,79 +5,78 @@ using UnityEngine;
 public class Item {
     private CreativeTabs tabToDisplayOn = null;
 
+    //public static Dictionary<string, int> dictionaryItemID = new Dictionary<string, int>();
     public static Dictionary<string, Item> dictionaryTextualID = new Dictionary<string, Item>();
 
-    public static Item[] itemsList = {
-        //new Item("iron_shovel").setIconCoord(2, 5),
-        //new ItemSpade("iron_shovel", ToolMaterial.dictionaryToolMaterial["iron"]).setIconCoord(2, 5),
-        //new ItemSpade("iron_shovel", setToolMaterial("iron")).setIconCoord(2, 5),
-        new ItemTool("iron_shovel", ToolMaterial.dictionaryToolMaterial["iron"]).setIconCoord(2, 5),
-        new ItemTool("iron_pickaxe", ToolMaterial.dictionaryToolMaterial["iron"]).setIconCoord(2, 6),
-        new ItemTool("iron_axe", ToolMaterial.dictionaryToolMaterial["iron"]).setIconCoord(2, 7),
-        new ItemFlintAndSteel("flint_and_steel").setIconCoord(5, 0),
-        new ItemFood("apple", 4, 0.3f, false).setIconCoord(10, 0),
-        new Item("bow").setIconCoord(5, 1),
-        new Item("arrow").setIconCoord(5, 2).setCreativeTab("combat"),
-        new Item("coal").setIconCoord(7, 0),
-        new Item("diamond").setIconCoord(7, 3),
-        new Item("iron_ingot").setIconCoord(7, 1),
-        new Item("gold_ingot").setIconCoord(7, 2),
-        new Item("iron_sword").setIconCoord(2, 4),
-        new Item("wooden_sword").setIconCoord(0, 4),
-        new ItemTool("wooden_shovel", ToolMaterial.dictionaryToolMaterial["wood"]).setIconCoord(0, 5),
-        new ItemTool("wooden_pickaxe", ToolMaterial.dictionaryToolMaterial["wood"]).setIconCoord(0, 6),
-        new ItemTool("wooden_axe", ToolMaterial.dictionaryToolMaterial["wood"]).setIconCoord(0, 7),
-        new Item("stone_sword").setIconCoord(1, 4),
-        new ItemTool("stone_shovel", ToolMaterial.dictionaryToolMaterial["stone"]).setIconCoord(1, 5),
-        new ItemTool("stone_pickaxe", ToolMaterial.dictionaryToolMaterial["stone"]).setIconCoord(1, 6),
-        new ItemTool("stone_axe", ToolMaterial.dictionaryToolMaterial["stone"]).setIconCoord(1, 7),
-        new Item("diamond_sword").setIconCoord(3, 4),
-        new ItemTool("diamond_shovel", ToolMaterial.dictionaryToolMaterial["emerald"]).setIconCoord(3, 5),
-        new ItemTool("diamond_pickaxe", ToolMaterial.dictionaryToolMaterial["emerald"]).setIconCoord(3, 6),
-        new ItemTool("diamond_axe", ToolMaterial.dictionaryToolMaterial["emerald"]).setIconCoord(3, 7),
-        new Item("stick").setIconCoord(5, 3),
-        new Item("bowl").setIconCoord(7, 4),
-        new Item("mushroom_stew").setIconCoord(8, 4),
-        new Item("golden_sword").setIconCoord(4, 4),
-        new ItemTool("golden_shovel", ToolMaterial.dictionaryToolMaterial["gold"]).setIconCoord(4, 5),
-        new ItemTool("golden_pickaxe", ToolMaterial.dictionaryToolMaterial["gold"]).setIconCoord(4, 6),
-        new ItemTool("golden_axe", ToolMaterial.dictionaryToolMaterial["gold"]).setIconCoord(4, 7),
-        new Item("string").setIconCoord(8, 0),
-        new Item("feather").setIconCoord(8, 1),
-        new Item("gunpowder").setIconCoord(8, 2),
-        new Item("wooden_hoe").setIconCoord(0, 8),
-        new Item("stone_hoe").setIconCoord(1, 8),
-        new Item("iron_hoe").setIconCoord(2, 8),
-        new Item("diamond_hoe").setIconCoord(3, 8),
-        new Item("golden_hoe").setIconCoord(4, 8),
-        new Item("seeds").setIconCoord(9, 0),
-        new Item("wheat").setIconCoord(9, 1),
-        new Item("bread").setIconCoord(9, 2),
-        new Item("leahter_helmet").setIconCoord(0, 0),
-        new Item("leahter_chestplate").setIconCoord(0, 1),
-        new Item("leahter_leggings").setIconCoord(0, 2),
-        new Item("leahter_boots").setIconCoord(0, 3),
-        new Item("chainmail_helmet").setIconCoord(1, 0),
-        new Item("chainmail_chestplate").setIconCoord(1, 1),
-        new Item("chainmail_leggings").setIconCoord(1, 2),
-        new Item("chainmail_boots").setIconCoord(1, 3),
-        new Item("iron_helmet").setIconCoord(2, 0),
-        new Item("iron_chestplate").setIconCoord(1, 1),
-        new Item("iron_leggings").setIconCoord(2, 2),
-        new Item("iron_boots").setIconCoord(2, 3),
-        new Item("diamond_helmet").setIconCoord(3, 0),
-        new Item("diamond_chestplate").setIconCoord(3, 1),
-        new Item("diamond_leggings").setIconCoord(3, 2),
-        new Item("diamond_boots").setIconCoord(3, 3),
-        new Item("golden_helmet").setIconCoord(4, 0),
-        new Item("golden_chestplate").setIconCoord(4, 1),
-        new Item("golden_leggings").setIconCoord(4, 2),
-        new Item("golden_boots").setIconCoord(4, 3),
-        new Item("flint").setIconCoord(6, 0),
-    };
+    //public static Item[] itemsList = new Item[32000];
+    public static List<Item> itemsList = new List<Item>();
+    public static Item IRON_SHOVEL = new ItemTool("iron_shovel", ToolMaterial.IRON).setIconCoord(2, 5);
+    public static Item IRON_PICKAXE = new ItemTool("iron_pickaxe", ToolMaterial.IRON).setIconCoord(2, 6);
+    public static Item IRON_AXE = new ItemTool("iron_axe", ToolMaterial.IRON).setIconCoord(2, 7);
+    public static Item FLINT_AND_STEEL = new ItemFlintAndSteel("flint_and_steel").setIconCoord(5, 0);
+    public static Item APPLE = new ItemFood("apple", 4, 0.3f, false).setIconCoord(10, 0);
+    public static Item BOW = new ItemBow("bow").setIconCoord(5, 1);
+    public static Item ARROW = new Item("arrow").setIconCoord(5, 2).setCreativeTab(CreativeTabs.COMBAT);
+    public static Item COAL = new ItemCoal("coal").setIconCoord(7, 0);
+    public static Item DIAMOND = new Item("diamond").setIconCoord(7, 3);
+    public static Item IRON_INGOT = new Item("iron_ingot").setIconCoord(7, 1);
+    public static Item GOLD_INGOT = new Item("gold_ingot").setIconCoord(7, 2);
+    public static Item IRON_SWORD = new ItemSword("iron_sword", ToolMaterial.IRON).setIconCoord(2, 4);
+    public static Item WOODEN_SWORD = new ItemSword("wooden_sword", ToolMaterial.WOOD).setIconCoord(0, 4);
+    public static Item WOODEN_SHOVEL = new ItemTool("wooden_shovel", ToolMaterial.WOOD).setIconCoord(0, 5);
+    public static Item WOODEN_PICKAXE = new ItemTool("wooden_pickaxe", ToolMaterial.WOOD).setIconCoord(0, 6);
+    public static Item WOODEN_AXE = new ItemTool("wooden_axe", ToolMaterial.WOOD).setIconCoord(0, 7);
+    public static Item STONE_SWORD = new ItemSword("stone_sword", ToolMaterial.STONE).setIconCoord(1, 4);
+    public static Item STONE_SHOVEL = new ItemTool("stone_shovel", ToolMaterial.STONE).setIconCoord(1, 5);
+    public static Item STONE_PICKAXE = new ItemTool("stone_pickaxe", ToolMaterial.STONE).setIconCoord(1, 6);
+    public static Item STONE_AXE = new ItemTool("stone_axe", ToolMaterial.STONE).setIconCoord(1, 7);
+    public static Item DIAMOND_SWORD = new ItemSword("diamond_sword", ToolMaterial.EMERALD).setIconCoord(3, 4);
+    public static Item DIAMOND_SHOVEL = new ItemTool("diamond_shovel", ToolMaterial.EMERALD).setIconCoord(3, 5);
+    public static Item DIAMOND_PICKAXE = new ItemTool("diamond_pickaxe", ToolMaterial.EMERALD).setIconCoord(3, 6);
+    public static Item DIAMOND_AXE = new ItemTool("diamond_axe", ToolMaterial.EMERALD).setIconCoord(3, 7);
+    public static Item STICK = new Item("stick").setIconCoord(5, 3);
+    public static Item BOWL = new Item("bowl").setIconCoord(7, 4);
+    public static Item MUSHROOM_STEW = new ItemSoup("mushroom_stew").setIconCoord(8, 4);
+    public static Item GOLDEN_SWORD = new ItemSword("golden_sword", ToolMaterial.GOLD).setIconCoord(4, 4);
+    public static Item GOLDEN_SHOVEL = new ItemTool("golden_shovel", ToolMaterial.GOLD).setIconCoord(4, 5);
+    public static Item GOLDEN_PICKAXE = new ItemTool("golden_pickaxe", ToolMaterial.GOLD).setIconCoord(4, 6);
+    public static Item GOLDEN_AX = new ItemTool("golden_axe", ToolMaterial.GOLD).setIconCoord(4, 7);
+    public static Item STRING = new ItemReed("string").setIconCoord(8, 0);
+    public static Item FEATHER = new Item("feather").setIconCoord(8, 1);
+    public static Item GUNPOWDER = new Item("gunpowder").setIconCoord(8, 2);
+    public static Item WOODEN_HOE = new ItemHoe("wooden_hoe", ToolMaterial.WOOD).setIconCoord(0, 8);
+    public static Item STONE_HOE = new ItemHoe("stone_hoe", ToolMaterial.STONE).setIconCoord(1, 8);
+    public static Item IRON_HORE = new ItemHoe("iron_hoe", ToolMaterial.IRON).setIconCoord(2, 8);
+    public static Item DIAMOND_HOE = new ItemHoe("diamond_hoe", ToolMaterial.EMERALD).setIconCoord(3, 8);
+    public static Item GOLDEN_HOE = new ItemHoe("golden_hoe", ToolMaterial.GOLD).setIconCoord(4, 8);
+    public static Item SEEDS = new ItemSeeds("seeds").setIconCoord(9, 0);
+    public static Item WHEAT = new Item("wheat").setIconCoord(9, 1);
+    public static Item BREAD = new ItemFood("bread", 5, 0.6f, false).setIconCoord(9, 2);
+    public static Item LEATHER_HELMET = new ItemArmor("leahter_helmet", ArmorMaterial.CLOTH, 0, 0).setIconCoord(0, 0);
+    public static Item LEATHER_CHESTPLATE = new ItemArmor("leahter_chestplate", ArmorMaterial.CLOTH, 0, 1).setIconCoord(0, 1);
+    public static Item LEATHER_LEGGINGS = new ItemArmor("leahter_leggings", ArmorMaterial.CLOTH, 0, 2).setIconCoord(0, 2);
+    public static Item LEATHER_BOOTS = new ItemArmor("leahter_boots", ArmorMaterial.CLOTH, 0, 3).setIconCoord(0, 3);
+    public static Item CHAINMAIL_HELMET = new ItemArmor("chainmail_helmet", ArmorMaterial.CHAIN, 1, 0).setIconCoord(1, 0);
+    public static Item CHAINMAIL_CHESTPLATE = new ItemArmor("chainmail_chestplate", ArmorMaterial.CHAIN, 1, 1).setIconCoord(1, 1);
+    public static Item CHAINMAIL_LEGGINGS = new ItemArmor("chainmail_leggings", ArmorMaterial.CHAIN, 1, 2).setIconCoord(1, 2);
+    public static Item CHAINMAIL_BOOTS = new ItemArmor("chainmail_boots", ArmorMaterial.CHAIN, 1, 3).setIconCoord(1, 3);
+    public static Item IRON_HELMET = new ItemArmor("iron_helmet", ArmorMaterial.IRON, 2, 0).setIconCoord(2, 0);
+    public static Item IRON_CHESTPLATE = new ItemArmor("iron_chestplate", ArmorMaterial.IRON, 2, 1).setIconCoord(1, 1);
+    public static Item IRON_LEGGINGS = new ItemArmor("iron_leggings", ArmorMaterial.IRON, 2, 2).setIconCoord(2, 2);
+    public static Item IRON_BOOTS = new ItemArmor("iron_boots", ArmorMaterial.IRON, 2, 3).setIconCoord(2, 3);
+    public static Item DIAMOND_HELMET = new ItemArmor("diamond_helmet", ArmorMaterial.DIAMOND, 3, 0).setIconCoord(3, 0);
+    public static Item DIAMOND_CHESTPLATE = new ItemArmor("diamond_chestplate", ArmorMaterial.DIAMOND, 3, 1).setIconCoord(3, 1);
+    public static Item DIAMOND_LEGGINGS = new ItemArmor("diamond_leggings", ArmorMaterial.DIAMOND, 3, 2).setIconCoord(3, 2);
+    public static Item DIAMOND_BOOTS = new ItemArmor("diamond_boots", ArmorMaterial.DIAMOND, 3, 3).setIconCoord(3, 3);
+    public static Item GOLDEN_HELMET = new ItemArmor("golden_helmet", ArmorMaterial.GOLD, 4, 0).setIconCoord(4, 0);
+    public static Item GOLDEN_CHESTPLATE = new ItemArmor("golden_chestplate", ArmorMaterial.GOLD, 4, 1).setIconCoord(4, 1);
+    public static Item GOLDEN_LEGGINGS = new ItemArmor("golden_leggings", ArmorMaterial.GOLD, 4, 2).setIconCoord(4, 2);
+    public static Item GOLDEN_BOOTS = new ItemArmor("golden_boots", ArmorMaterial.GOLD, 4, 3).setIconCoord(4, 3);
+    public static Item FLINT = new Item("flint").setIconCoord(6, 0);
 
     // O ID deste item.
-    protected string textualID;
+    //private int itemID;
+    private string textualID;
 
     // Tamanho máximo da pilha.
     protected int maxStackSize = 64;
@@ -92,8 +91,12 @@ public class Item {
     private string itemName;
 
     protected Item(string textualID) {
-        dictionaryTextualID.Add(textualID, this);
-
+        //dictionaryItemID.Add(textualID, itemID);
+        //this.itemID++;
+        //itemsList[itemID] = this;
+        itemsList.Add(this);
+       
+        dictionaryTextualID.Add(textualID, this); 
         this.textualID = textualID;
 
         setItemName();
@@ -156,16 +159,29 @@ public class Item {
         return EnumAction.NONE;
     }
 
+    // 🔴
+    //*
+    public virtual EnumSlotTag getEnumSlotTag() {
+        return EnumSlotTag.NONE;
+    }
+    //*/
+
+    public virtual EnumSlotTag getEnumSlotTag(int armorType) {
+        return EnumSlotTag.NONE;
+    }
+
     // return this;
-    public Item setCreativeTab(string label) {
-        this.tabToDisplayOn = CreativeTabs.dictionaryTabLabel[label];
+    public Item setCreativeTab(CreativeTabs creativeTabs) {
+        this.tabToDisplayOn = creativeTabs;
         return this;
     }
 
-    private ToolMaterial toolMaterial;
+    /*
+    protected ToolMaterial toolMaterial;
 
     public Item setToolMaterial(string material) {
         this.toolMaterial = ToolMaterial.dictionaryToolMaterial[material];
         return this;
     }
+    //*/
 }

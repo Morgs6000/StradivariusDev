@@ -11,7 +11,7 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
 
     [SerializeField] private Image image;
 
-    [SerializeField] private EnumSlotTag enumSlotTag = EnumSlotTag.NONE;
+    [SerializeField] public EnumSlotTag enumSlotTag = EnumSlotTag.NONE;
 
     private void Awake() {
         drag = FindObjectOfType<Drag>();
