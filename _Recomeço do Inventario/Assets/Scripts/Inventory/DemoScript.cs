@@ -36,12 +36,12 @@ public class DemoScript : MonoBehaviour {
     */
     
     public void PickUpItem(string textualID, int stack) {
-        bool result = InventoryManager.Instance.AddItem(Item.dictionaryTextualID[textualID], stack);
+        bool result = InventoryManager.Instance.AddItem(Item.itemsList[textualID], stack);
 
         if(result) {
             //Debug.Log("Dado 1 Item para o jogador");
 
-            string name = Item.dictionaryTextualID[textualID].getItemName();
+            string name = Item.itemsList[textualID].getItemName();
             Debug.Log("Dado " + stack + " " + StringManager.Instance.GetString(name) + " para o jogador");
         }
         else {
@@ -52,10 +52,8 @@ public class DemoScript : MonoBehaviour {
 
     private void AddItem() {
         //*
-        foreach(Item item in Item.itemsList) {
-            //if(item != null) {
-                SpawnNewItem(Item.dictionaryTextualID[item.getTextualID()]);
-            //}
+        foreach(Item item in Item.itemsList.Values) {
+            SpawnNewItem(Item.itemsList[item.getTextualID()]);
         }
         //*/
         /*

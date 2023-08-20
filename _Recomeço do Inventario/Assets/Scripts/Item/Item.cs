@@ -6,10 +6,11 @@ public class Item {
     private CreativeTabs tabToDisplayOn = null;
 
     //public static Dictionary<string, int> dictionaryItemID = new Dictionary<string, int>();
-    public static Dictionary<string, Item> dictionaryTextualID = new Dictionary<string, Item>();
+    //public static Dictionary<string, Item> dictionaryTextualID = new Dictionary<string, Item>();
+    public static Dictionary<string, Item> itemsList = new Dictionary<string, Item>();
 
     //public static Item[] itemsList = new Item[32000];
-    public static List<Item> itemsList = new List<Item>();
+    //public static List<Item> itemsList = new List<Item>();
     public static Item IRON_SHOVEL = new ItemTool("iron_shovel", ToolMaterial.IRON).setIconCoord(2, 5);
     public static Item IRON_PICKAXE = new ItemTool("iron_pickaxe", ToolMaterial.IRON).setIconCoord(2, 6);
     public static Item IRON_AXE = new ItemTool("iron_axe", ToolMaterial.IRON).setIconCoord(2, 7);
@@ -94,9 +95,10 @@ public class Item {
         //dictionaryItemID.Add(textualID, itemID);
         //this.itemID++;
         //itemsList[itemID] = this;
-        itemsList.Add(this);
+        //itemsList.Add(this);
        
-        dictionaryTextualID.Add(textualID, this); 
+        //dictionaryTextualID.Add(textualID, this); 
+        itemsList.Add(textualID, this); 
         this.textualID = textualID;
 
         setItemName();

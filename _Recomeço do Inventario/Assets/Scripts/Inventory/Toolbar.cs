@@ -130,7 +130,7 @@ public class Toolbar : MonoBehaviour {
 
     private void getSelectedItem() {
         if(getItem()) {
-            if(Item.dictionaryTextualID[getItem().getTextualID()].getItemUseAction() == EnumAction.EAT) {
+            if(Item.itemsList[getItem().getTextualID()].getItemUseAction() == EnumAction.EAT) {
                 int result = getItem().getCurrentStackSize() - 1;
                 getItem().setCurretnStackSize(result);
 
@@ -141,7 +141,7 @@ public class Toolbar : MonoBehaviour {
                     getItem().RefreshStack();
                 }
             }
-            if(Item.dictionaryTextualID[getItem().getTextualID()].getItemUseAction() == EnumAction.USE) {
+            if(Item.itemsList[getItem().getTextualID()].getItemUseAction() == EnumAction.USE) {
                 int result = getItem().getCurrentDamage() - 1;
                 getItem().setCurrentDamage(result);
 

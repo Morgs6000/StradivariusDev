@@ -129,7 +129,7 @@ public class ItemRenderer : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
     }
 
     public void RefreshDamage() {
-        int maxDamage = Item.dictionaryTextualID[textualID].getMaxDamage();
+        int maxDamage = Item.itemsList[textualID].getMaxDamage();
 
         //int barWidth = (int)durabilityBar.rect.width;
         int barWidth = 12;
@@ -187,7 +187,7 @@ public class ItemRenderer : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 
             ItemRenderer itemOnDrag = Drag.Instance.transform.GetComponentInChildren<ItemRenderer>();
 
-            if(Item.dictionaryTextualID[itemOnDrag.getTextualID()].getEnumSlotTag() == EnumSlotTag.NONE) {
+            if(Item.itemsList[itemOnDrag.getTextualID()].getEnumSlotTag() == EnumSlotTag.NONE) {
                 if(slot.getEnumSlotTag() != EnumSlotTag.NONE) {
                     return;
                 }
@@ -231,7 +231,7 @@ public class ItemRenderer : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
                 GameObject newItem = Instantiate(itemPrefab, Drag.Instance.transform);
 
                 ItemRenderer itemOnDrag = newItem.GetComponent<ItemRenderer>();
-                itemOnDrag.InitialiseItem(Item.dictionaryTextualID[textualID]);
+                itemOnDrag.InitialiseItem(Item.itemsList[textualID]);
                 
                 string name = itemName;
                 newItem.name = StringManager.Instance.GetString(name);
@@ -267,7 +267,7 @@ public class ItemRenderer : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
     private void OnDropping() {
         ItemRenderer itemOnDrag = Drag.Instance.GetComponentInChildren<ItemRenderer>();
 
-        int spaceAvailable = Item.dictionaryTextualID[textualID].getMaxStackSize() - currentStackSize;
+        int spaceAvailable = Item.itemsList[textualID].getMaxStackSize() - currentStackSize;
 
         if(spaceAvailable > 0) {
             if(InputManager.Instance.getLeftMouseButtonDown()) {
@@ -302,7 +302,7 @@ public class ItemRenderer : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
             DemoScript.Instance.PickUpItem(textualID, 1);
         }
         if(Input.GetMouseButtonDown(1)) {
-            int maxStackSize = Item.dictionaryTextualID[textualID].getMaxStackSize();
+            int maxStackSize = Item.itemsList[textualID].getMaxStackSize();
             DemoScript.Instance.PickUpItem(textualID, maxStackSize);
         }
 
@@ -328,8 +328,8 @@ public class ItemRenderer : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         string content;
 
         if(slot) {
-            if(Item.dictionaryTextualID[textualID].getItemUseAction() == EnumAction.USE) {
-                content = "\n" + "Durability: " + currentDamage + " / " + Item.dictionaryTextualID[textualID].getMaxDamage();
+            if(Item.itemsList[textualID].getItemUseAction() == EnumAction.USE) {
+                content = "\n" + "Durability: " + currentDamage + " / " + Item.itemsList[textualID].getMaxDamage();
             }
             else {
                 content = null;

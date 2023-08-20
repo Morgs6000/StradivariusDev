@@ -96,7 +96,7 @@ public class InventoryManager : MonoBehaviour {
         itemRenderer.setCurretnStackSize(stack);
         itemRenderer.RefreshStack();
 
-        itemRenderer.setCurrentDamage(Item.dictionaryTextualID[itemRenderer.getTextualID()].getMaxDamage());
+        itemRenderer.setCurrentDamage(Item.itemsList[itemRenderer.getTextualID()].getMaxDamage());
         itemRenderer.RefreshDamage();
     }
 

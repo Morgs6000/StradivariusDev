@@ -32,7 +32,7 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
 
     public void OnPointerDown(PointerEventData eventData) {
         //*
-        if(enumSlotTag != EnumSlotTag.NONE && Item.dictionaryTextualID[getItem().getTextualID()].getEnumSlotTag(armorType) != enumSlotTag) {
+        if(enumSlotTag != EnumSlotTag.NONE && Item.itemsList[getItem().getTextualID()].getEnumSlotTag(armorType) != enumSlotTag) {
             return;
         }
         //*/
@@ -68,7 +68,7 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
                 GameObject newItem = Instantiate(itemPrefab, transform);
 
                 ItemRenderer itemInSlot = newItem.GetComponent<ItemRenderer>();
-                itemInSlot.InitialiseItem(Item.dictionaryTextualID[getItem().getTextualID()]);
+                itemInSlot.InitialiseItem(Item.itemsList[getItem().getTextualID()]);
 
                 string name = getItem().getItemName();
                 newItem.name = StringManager.Instance.GetString(name);
