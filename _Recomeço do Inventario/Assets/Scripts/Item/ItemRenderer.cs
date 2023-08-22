@@ -192,6 +192,7 @@ public class ItemRenderer : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
                     return;
                 }
             }
+            
             if(textualID != itemOnDrag.getTextualID()) {
                 ExchangeStack();
             }
